@@ -206,7 +206,6 @@ public:
 };
 
 
-
 struct EmergencyPatient {
     int patientId, severity;
 };
