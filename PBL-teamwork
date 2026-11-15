@@ -321,7 +321,6 @@ public:
 };
 
 
-
 struct DischargeRecord {
     int patientId;
     string name;
