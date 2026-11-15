@@ -260,32 +260,29 @@ public:
         }
     }
 
-    void treatNextPatient() {
-        if (emergencyQueue.empty()) {
-            cout << "No emergency patients waiting.\n";
+    void treatNextPatient(){
+     if(emergencyQueue.empty()){
+        cout<<"No emergency patients waiting.\n";
+           return;
+     }
+    int bed=-1;
+    for(int i=0;i < TOTAL_BEDS; i++){
+       if(!beds[i]){
+           bed=i;
+          break;
+       }
+    }
+       if(bed == -1){
+         cout<<"No beds available. patient remains in queue.\n";
             return;
-        }
+       }
+      EmergencyPatient p= emergencyQueue.top();
+      emergencyQueue.pop();
+      beds[bed]=true;
 
-        int bed = -1;
-        for (int i = 0; i < TOTAL_BEDS; i++) {
-            if (!beds[i]) {
-                bed = i;
-                break;
-            }
-        }
-
-        if (bed == -1) {
-            cout << "No beds available. Patient remains in queue.\n";
-            return;
-        }
-
-        EmergencyPatient p = emergencyQueue.top();
-        emergencyQueue.pop();
-        beds[bed] = true;
-
-        cout << "Treating patient: " << p.patientId
-             << "\nSeverity: " << p.severity
-             << "\nAllotted bed: " << bed + 1 << '\n';
+      cout<<"Treating patient:"<< p.patientId
+          <<"\nSeverity: "<< p.severity
+          <<"\nAllocated bed:" << bed + 1 <<'\n';
     }
 
     void showBeds() {
